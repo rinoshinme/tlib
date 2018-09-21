@@ -15,9 +15,36 @@ namespace tlib
         int size;
         int ref_cnt;
         
-        MemoryWithRefCount(int s = 64);
-        ~MemoryWithRefCount();
-        MemoryWithRefCount MakePrivate() const;
+        MemoryWithRefCount(int s = 64)
+        {
+            size = s;
+            data = new T[size];
+            memset(data, 0, sizeof(T) * size);
+            ref_cnt = 1;
+        }
+        
+        ~MemoryWithRefCount()
+        {
+            ref_cnt -= 1;
+            if (ref_cnt == 0)
+            {
+                delete[] data;
+                data = NULL;
+            }
+        }
+        
+        MemoryWithRefCount MakePrivate()
+        {
+            if (ref_cnt == 1)
+                return (*this);
+            else
+            {
+                MemoryWithRefCount new_memory(size);
+                memcpy(new_memory.data, data, sizeof(T) * size);
+                ref_cnt -= 1;
+                return new_memory;
+            }
+        }
     };
     
     /*
@@ -32,17 +59,86 @@ namespace tlib
         std::vector<int> m_start;
         
     public:
-        Array(int n, int c, int h, int w);
-        Array(const std::vector<int>& shape); // shape of
-        Array(const Array<T>& source);
-        Array<T>& operator=(const Array<T>& source);
-        ~Array();
+        Array(int n, int c, int h, int w)
+        {
+            int size = n * c * h * w;
+            m_data = new MemoryWithRefCount<T>(size);
+            m_shape.push_back(n);
+            m_shape.push_back(c);
+            m_shape.push_back(h);
+            m_shape.push_back(w);
+            
+            for (int i = 0; i < 4; ++i)
+                m_start.push_back(0);
+        }
         
-        void copyFrom(const Array<T>& source);
+        Array(const std::vector<int>& shape) // shape of
+        {
+            int size = 1;
+            for (size_t k = 0; k < shape.size(); ++k)
+                size += shape[k];
+            m_data = new MemoryWithRefCount<T>(size);
+            m_shape = shape;
+            for (size_t i = 0; i < shape.size(); ++i)
+                m_start.push_back(0);
+        }
+        
+        Array(const Array<T>& source)
+        {
+            m_data = source.m_data;
+            m_shape = source.m_shape;
+            m_start = source.m_start;
+            m_data->ref_cnt += 1;
+        }
+        
+        Array<T>& operator=(const Array<T>& source)
+        {
+            delete m_data;
+            m_data = source.m_data;
+            m_data->ref_cnt += 1;
+            m_shape = source.m_shape;
+            m_start = source.m_start;
+        }
+        
+        ~Array()
+        {
+            delete m_data;
+        }
+        
+        void setData(const T* data_source)
+        {
+            memcpy(m_data->data, data_source, m_data->size * sizeof(T));
+        }
+        
+        /* deep copy from source */
+        void copyFrom(const Array<T>& source)
+        {
+            int size = source.m_data->size;
+            m_data = new MemoryWithRefCount<T>(size);
+            m_shape = source.m_shape;
+            m_start = source.m_start;
+        }
         
     private:
-        int offset(int n, int c, int h, int w);
-        int offset(const std::vector<int>& indices);
+        int offset(int n, int c, int h, int w)
+        {
+            int idx = 0;
+            idx = idx + n + m_start[0];
+            idx = idx * m_shape[0] + c + m_start[1];
+            idx = idx * m_shape[1] + h + m_start[2];
+            idx = idx * m_shape[2] + w + m_start[3];
+            return idx;
+         }
+        
+        int offset(const std::vector<int>& indices)
+        {
+            int idx = 0;
+            for (int i = 0; i < 4; ++i)
+            {
+                idx = idx * m_shape[i] + indices[i] + m_start[i];
+            }
+            return idx;
+        }
         
     };
 }

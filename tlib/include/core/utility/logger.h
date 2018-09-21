@@ -4,6 +4,7 @@
 #include <string>
 #include <ctime>
 #include <unistd.h>
+#include <stdio.h>
 
 namespace tlib
 {
@@ -12,6 +13,7 @@ namespace tlib
     private:
         std::string m_name;
         int m_fd;
+        FILE* fp;
         
     public:
         Logger(const std::string& name, int fd = STDOUT_FILENO);

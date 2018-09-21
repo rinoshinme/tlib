@@ -27,6 +27,12 @@ int main(int argc, const char * argv[]) {
     Logger logger("tlib");
     logger.write("test message");
     
+    std::string input = "   abc  \t";
+    std::string output1 = StringOps::trimLeft(input);
+    std::string output2 = StringOps::trim(input);
+    std::cout << output1 << std::endl;
+    std::cout << output2 << std::endl;
+    
     std::cout << "finished...\n";
     return 0;
 }
