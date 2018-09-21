@@ -1,0 +1,158 @@
+tlib项目结构
+我的代码库
+
+基本模块
+1. core
+	array with dynamic dimension [1d, 2d, 3d, 4d]
+	2d matrix - matrix operations
+		only 2x2 - 4x4
+	3d image
+	sound representation [1ch, 2ch]
+	rect
+		2d box overlap
+	2d point, vector
+	3d point, vector
+	2d homogeneous coordinate
+	3d homogeneous coordinate
+
+	mathematics
+		random number generator
+		statistics
+		1d and 2d dft and fft [use ooura's implementation]
+		probability distribution
+		monte carlo sampling
+		bitwise operations
+	utility
+		counter
+		timer
+		logger
+
+	system functions
+		os
+		string operations
+		file and dir
+
+	compression and coding
+		Huffman
+		LZW
+
+	data structures and algorithms
+		-> sub-project [with self-content implementation]
+		linear structure
+			list, heap, queue, pq, stack, circular list, 
+		key-value structure
+			map, hash
+		tree structure
+			binary tree
+			search tree
+			rb tree
+			kd tree
+		graph structure
+			graph representation
+			DAG...
+		search
+		sorting
+		string algos
+		graph algos
+		greedy
+
+图像处理模块
+2. image processing
+	image io functions
+		bmp, ppm
+	image filtering
+		image integral
+		separable filter
+		non-separable filter
+		rank filters [median, max, min]
+		image matching
+	image enhancement
+		unsharp masking [USM]
+	feature detection
+		edge - canny 
+		corner
+		advanced...
+	thresholding and binarization
+		adaptive thresholding
+	mathematical morhpology
+		structure element
+		skeletonization
+		distance transform
+	shape analysis
+		connected component analysis
+		image moments
+	color analysis
+		RGB, HSV, ...
+	kalman filter and tracking
+	other
+		dithering: FloydSteinberg
+
+几何与三维视觉模块
+3. geometry and 3d vision
+	camera projection
+		point cloud
+	geometric transformation
+	quaternion
+	homography
+	object collision
+	image rendering
+	RANSAC example
+
+监督学习模块
+4. supervised learning
+	bayesian 
+	linear regression
+	logistic regression
+	svm
+	k-nearest neighbour
+	boost
+	decision tree
+
+无监督学习模块
+5. unsupervised learning
+	pca
+	k means
+	mean shift
+
+神经网络模块
+6. neural networks
+	-> a simple neural net implementation
+		conv layer
+		fc layer
+		relu layer
+		sigmoid layer
+		softmax layer
+
+信号与音频处理模块
+7. signal and sound processing
+	wav sound io
+	signal generator
+	window functions
+	signal filtering
+	adaptive filters
+	MFCCs
+	music genre classification
+	audio effects
+		all pass filter
+		reverbration
+		auto-synthesis
+			lpc
+	music generator
+	MIDI
+	wavelet transform
+
+高级算法模块
+8. contrib [advanced algorithms]
+	object tracking
+	background subtraction
+	object assembly simulation
+	triangulation Delauney
+
+第三方库
+9. third-party libraries
+	libjpeg
+	libpng for image io
+	ooura's fft
+	Eigen for linear algebra
+	mp3 io functions
+
