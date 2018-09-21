@@ -4,6 +4,7 @@
 #include <ctime>
 #include <string>
 #include <utility>
+#include <vector>
 
 namespace tlib
 {
@@ -12,7 +13,7 @@ namespace tlib
     private:
         clock_t m_start;
         clock_t m_end;
-        std::vector<std::pair<std::string, clock_t> > time_map;
+        std::vector<std::pair<std::string, clock_t> > m_time_map;
         
     public:
         StopWatch();
@@ -20,6 +21,10 @@ namespace tlib
         void start();
         void click(const std::string& stamp);
         void stop();
+        
+        clock_t getTimeCost(int index);
+        clock_t getTimeCost(const std::string& name);
+        size_t getNum() const { return m_time_map.size(); }
     };
 }
 
