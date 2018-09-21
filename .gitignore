@@ -34,5 +34,5 @@
 # mac file
 .DS_Store
 */.DS_Store
-*.xcodeproj/*
+tlib.xcodeproj/
 
