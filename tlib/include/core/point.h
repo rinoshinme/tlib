@@ -8,6 +8,11 @@ namespace tlib
     {
         T x;
         T y;
+        Point2d(T px = 0, T py = 0)
+        : x(px), y(py) {}
+        
+        double distToOrigin() const;
+        double distTo(const Point2d<T>& other) const;
     };
     
     template<typename T>
@@ -16,6 +21,11 @@ namespace tlib
         T x;
         T y;
         T z;
+        Point3d(T px = 0, T py = 0, T pz = 0)
+        : x(px), y(py), z(pz) {}
+        
+        double distToOrigin() const;
+        double distTo(const Point3d<T>& other) const;
     };
 }
 

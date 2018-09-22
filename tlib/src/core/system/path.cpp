@@ -1,5 +1,6 @@
 #include "path.h"
 #include "stringops.h"
+#include <iostream>
 
 #if defined(__APPLE__)
 #include <unistd.h>
@@ -8,7 +9,6 @@
 #else
 #include <io.h>
 #endif
-#include <iostream>
 
 namespace tlib
 {

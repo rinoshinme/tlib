@@ -9,7 +9,8 @@ namespace tlib
     double mean(const std::vector<double>& data);
     double median(const std::vector<double>& data);
     double variance(const std::vector<double>& data);
-    
+    double skew(const std::vector<double>& data);
+
 }
 
 #endif /* tlib_stat_h */

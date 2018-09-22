@@ -60,6 +60,9 @@ tlib项目结构
 2. image processing
 	image io functions
 		bmp, ppm
+	image intensity transformation
+		lookup table
+		histogram operations
 	image filtering
 		image integral
 		separable filter
@@ -92,6 +95,7 @@ tlib项目结构
 	camera projection
 		point cloud
 	geometric transformation
+		rotation, translation, ...
 	quaternion
 	homography
 	object collision

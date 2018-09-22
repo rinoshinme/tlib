@@ -1,6 +1,7 @@
 #ifndef tlib_rng_h
 #define tlib_rng_h
 
+#include "array.h"
 #include <vector>
 
 namespace tlib
@@ -10,14 +11,29 @@ namespace tlib
      */
     class RNG
     {
+    private:
+        ssize_t seed;
     public:
-        static float getFloat();
-        static int getInt();
-        static bool getBool();
-        static std::vector<float> getFloatVec();
+        // singleton pattern
+        static RNG getRNG(int* seed = NULL)
+        {
+            return RNG();
+        }
+        
+    public:
+        float getFloat();
+        int getInt();
+        bool getBool();
+        std::vector<float> getFloatVec();
         
         template<typename T>
-        static Array<T> getArray(const std::vector<int>& shape);
+        Array<T> getArray(const std::vector<int>& shape);
+        
+    private:
+        RNG() {}
+        RNG(const RNG& other) {}
+        // RNG& operator=(const RNG& other)
+        ~RNG() {}
     };
 }
 
