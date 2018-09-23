@@ -13,6 +13,14 @@ namespace tlib
         int m_width;
         int m_height;
         int m_channel;
+        
+    public:
+        ImageIntegral(const Image<float>& image);
+        
+        float getRectSum(int left, int right, int top, int bottom);
+        
+    private:
+        void contruct();
     };
 }
 

@@ -59,6 +59,13 @@ namespace tlib
         std::vector<int> m_start;
         
     public:
+        Array()
+        {
+            m_data = NULL;
+            m_shape.clear();
+            m_start.clear();
+        }
+        
         Array(int n, int c, int h, int w)
         {
             int size = n * c * h * w;
@@ -105,6 +112,24 @@ namespace tlib
             delete m_data;
         }
         
+        int length() const
+        {
+            int length = 1;
+            for (size_t i = 0; i < m_shape.size(); ++i)
+                length *= m_shape[i];
+            return length;
+        }
+        
+        int dataSize() const
+        {
+            return length() * sizeof(T);
+        }
+        
+        void setData(int index, T value)
+        {
+            m_data->data[index] = value;
+        }
+        
         void setData(const T* data_source)
         {
             memcpy(m_data->data, data_source, m_data->size * sizeof(T));
@@ -118,6 +143,9 @@ namespace tlib
             m_shape = source.m_shape;
             m_start = source.m_start;
         }
+        
+        void reshape(int n, int c, int h, int w);
+        void reshape(const std::vector<int>& shape);
         
     private:
         int offset(int n, int c, int h, int w)

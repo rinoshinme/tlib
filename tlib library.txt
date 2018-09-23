@@ -112,6 +112,10 @@ tlib项目结构
 	boost
 	decision tree
 
+	supervised learning utilities
+		batch generator
+		model trainer -> SGD, Moment, Adam...
+
 无监督学习模块
 5. unsupervised learning
 	pca

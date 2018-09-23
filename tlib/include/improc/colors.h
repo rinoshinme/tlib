@@ -18,7 +18,19 @@ namespace tlib
         float alpha;
     };
     
+    struct HSV
+    {
+        float hue;
+        float saturation;
+        float value;
+    };
     
+    struct Lab
+    {
+        float L;
+        float a;
+        float b;
+    };
     
 }
 

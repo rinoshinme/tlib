@@ -3,6 +3,8 @@
 
 #include "array.h"
 #include <vector>
+#include <cstdlib>
+#include <ctime>
 
 namespace tlib
 {
@@ -15,19 +17,24 @@ namespace tlib
         ssize_t seed;
     public:
         // singleton pattern
-        static RNG getRNG(int* seed = NULL)
-        {
-            return RNG();
-        }
+        static RNG* getRNG(int* seed = NULL);
         
+        static void destroyRNG(RNG** rng);
     public:
         float getFloat();
-        int getInt();
-        bool getBool();
-        std::vector<float> getFloatVec();
+        int getInt(int xmin, int xmax);
+        bool getBool(float prob1);
+        std::vector<float> getFloatVec(int numSamples);
         
         template<typename T>
-        Array<T> getArray(const std::vector<int>& shape);
+        Array<T> getArray(const std::vector<int>& shape)
+        {
+            Array<T> result(shape);
+            int length = result.length();
+            for (int i = 0; i < length; ++i)
+                result.setData(i, getFloat());
+            return result;
+        }
         
     private:
         RNG() {}
