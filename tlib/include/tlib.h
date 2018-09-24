@@ -31,6 +31,7 @@
 #include "improc/image_integral.h"
 #include "improc/image_features.h"
 #include "improc/colors.h"
+#include "improc/image_io.h"
 
 // supervised learning
 #include "supervised_ml/linear_regression.h"
@@ -38,6 +39,7 @@
 #include "supervised_ml/bayesian.h"
 #include "supervised_ml/batch.h"
 #include "supervised_ml/batch_classify.h"
+#include "supervised_ml/perceptron.h"
 
 // unsupervised learning
 

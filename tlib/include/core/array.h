@@ -1,52 +1,11 @@
 #ifndef tlib_array_h
 #define tlib_array_h
 
+#include "memory_refcnt.h"
 #include <vector>
 
 namespace tlib
 {
-    /*
-     * internal representation of a memory buffer
-     */
-    template<typename T>
-    struct MemoryWithRefCount
-    {
-        T* data;
-        int size;
-        int ref_cnt;
-        
-        MemoryWithRefCount(int s = 64)
-        {
-            size = s;
-            data = new T[size];
-            memset(data, 0, sizeof(T) * size);
-            ref_cnt = 1;
-        }
-        
-        ~MemoryWithRefCount()
-        {
-            ref_cnt -= 1;
-            if (ref_cnt == 0)
-            {
-                delete[] data;
-                data = NULL;
-            }
-        }
-        
-        MemoryWithRefCount MakePrivate()
-        {
-            if (ref_cnt == 1)
-                return (*this);
-            else
-            {
-                MemoryWithRefCount new_memory(size);
-                memcpy(new_memory.data, data, sizeof(T) * size);
-                ref_cnt -= 1;
-                return new_memory;
-            }
-        }
-    };
-    
     /*
      * dynamic array
      */
@@ -146,6 +105,8 @@ namespace tlib
         
         void reshape(int n, int c, int h, int w);
         void reshape(const std::vector<int>& shape);
+        
+        Array<T> getSubarray(const std::vector<int>& shape, const std::vector<int>& starts);
         
     private:
         int offset(int n, int c, int h, int w)

@@ -64,13 +64,13 @@ namespace tlib
             return m_file.substr(index, m_file.size() - index);
     }
     
-    std::vector<std::string> Path::listDir() const
+    std::vector<std::string> Path::listDir(int list_type) const
     {
         std::vector<std::string> result;
         return result;
     }
     
-    std::vector<Path> Path::listDir2() const
+    std::vector<Path> Path::listDir2(int list_type) const
     {
         std::vector<Path> result;
         return result;

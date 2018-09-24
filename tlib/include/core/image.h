@@ -11,11 +11,20 @@ namespace tlib
     template<typename T>
     class Image
     {
+    protected:
         T* m_data;
         int m_width;
         int m_height;
         int m_channels;
     public:
+        Image()
+        {
+            m_width = 0;
+            m_height = 0;
+            m_channels = 0;
+            m_data = NULL;
+        }
+        
         Image(int w, int h, int c = 1)
         {
             m_width = w;
@@ -44,6 +53,9 @@ namespace tlib
         T& operator()(int x, int y, int z);
         const T& operator()(int x, int y) const;
         const T& operator()(int x, int y, int z) const;
+        
+        int index(int x, int y) const;
+        int index(int x, int y, int z) const;
         
         // operator overloadings
         

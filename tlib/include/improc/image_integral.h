@@ -6,16 +6,11 @@
 namespace tlib
 {
     /* channel-wise integral image */
-    class ImageIntegral
+    class ImageIntegral : public Image<float>
     {
-    private:
-        float* m_data;
-        int m_width;
-        int m_height;
-        int m_channel;
-        
     public:
         ImageIntegral(const Image<float>& image);
+        ~ImageIntegral();
         
         float getRectSum(int left, int right, int top, int bottom);
         

@@ -36,6 +36,9 @@ tlib项目结构
 		Huffman
 		LZW
 
+	visualization
+		plot 1d, 2d, and 3d signals
+
 	data structures and algorithms
 		-> sub-project [with self-content implementation]
 		linear structure
@@ -87,6 +90,8 @@ tlib项目结构
 	color analysis
 		RGB, HSV, ...
 	kalman filter and tracking
+		basic kalman filter
+		object tracking
 	other
 		dithering: FloydSteinberg
 
