@@ -99,4 +99,25 @@ namespace tlib
         return true;
     }
     
+    bool StringOps::checkInt(const std::string &input)
+    {
+        for (size_t i = 0; i < input.size(); ++i)
+        {
+        }
+        
+        return true;
+    }
+    
+    bool StringOps::checkValid(const std::string &input, tlib::ValueType type)
+    {
+        if (type == ValueType::ValueInteger)
+        {
+            // all digits
+        }
+        else
+        {
+            // floating point, digits and one dot
+        }
+        return true;
+    }
 }

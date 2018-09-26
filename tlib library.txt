@@ -15,6 +15,14 @@ tlib项目结构
 	2d homogeneous coordinate
 	3d homogeneous coordinate
 
+	data_transform
+		txt with separator
+			single column
+			doubel column with pair of data and label
+		csv with separator [, \t, space...] -> 3d array
+		image -> array
+		vector of image -> array
+
 	mathematics
 		random number generator
 		statistics
